@@ -37,33 +37,33 @@ public class Main {
 
     private static void menu() {
         System.out.println("===============MENU===============");
-        System.out.println("1. Inserir um cliente.\n");
-        System.out.println("2. Listar um cliente.\n");
-        System.out.println("3. Atualizar um cliente.\n");
-        System.out.println("4. Deletar um cliente.\n");
-        System.out.println("5. Sair.\n");
+        System.out.println("1. Inserir um cliente.");
+        System.out.println("2. Listar um cliente.");
+        System.out.println("3. Atualizar um cliente.");
+        System.out.println("4. Deletar um cliente.");
+        System.out.println("5. Sair.");
     }
 
     private static void inserirCliente() {
-        System.out.println("\nDigite o nome do cliente: ");
+        System.out.println("Digite o nome do cliente: ");
         String nome = input.nextLine();
-        System.out.println("\nDigite o CPF do cliente: ");
+        System.out.println("Digite o CPF do cliente: ");
         String cpf = input.nextLine();
-        System.out.println("\nDigite o endereço do cliente: ");
+        System.out.println("Digite o endereço do cliente: ");
         String endereco = input.nextLine();
 
         Cliente novoCliente = new Cliente(contId++, nome, cpf, endereco);
         clienteLista.add(novoCliente);
 
-        System.out.println("Cliente inserido com sucesso!");
+        System.out.println("Cliente inserido com sucesso!\n");
     }
 
     private static void listarCliente() {
         int op;
         do {
-            System.out.println("1. Listar todos clientes.\n");
-            System.out.println("2. Listar um cliente pelo ID.\n");
-            System.out.println("3. Voltar.\n");
+            System.out.println("1. Listar todos clientes.");
+            System.out.println("2. Listar um cliente pelo ID.");
+            System.out.println("3. Voltar.");
             op = input.nextInt();
             input.nextLine();
 
@@ -75,7 +75,7 @@ public class Main {
                 listarID();
                 break;
             case 3:
-                System.out.println("\nRetornando ao menu...");
+                System.out.println("Retornando ao menu...");
                 menu();
         }
         } while (op != 3);
@@ -89,12 +89,12 @@ public class Main {
 
     private static void listarID() {
         System.out.println("Qual o ID do cliente? ");
-        String ID = input.nextLine();
+        int ID = input.nextInt();
 
         boolean flagEncontrado = false;
 
         for (Cliente novoCliente : clienteLista) {
-            if (String.valueOf(novoCliente.getId()).equals(ID)) {
+            if (novoCliente.getId() == ID) {
                 System.out.println("\nEncontrado!\n");
                 System.out.println(novoCliente);
                 flagEncontrado = true;
@@ -108,10 +108,52 @@ public class Main {
     }
 
     private static void atualizarCliente() {
+        System.out.println("Digite o ID do cliente que deseja alterar: ");
+        int ID = input.nextInt();
 
+        Cliente clienteEncontrado = null;
+
+        for (Cliente novoCliente : clienteLista) {
+            if (novoCliente.getId() == ID) {
+                clienteEncontrado = novoCliente;
+                System.out.println("Cliente encontrado!");
+            } else {
+                System.out.println("Cliente não encontrado!");
+            }
+        }
+
+        if (clienteEncontrado != null) {
+            System.out.println("Digite o novo nome: ");
+            String novoNome = input.nextLine();
+            clienteEncontrado.setNome(novoNome);
+            System.out.println("Digite o novo CPF: ");
+            String novoCPF = input.nextLine();
+            clienteEncontrado.setCpf(novoCPF);
+            System.out.println("Digite o novo endereco: ");
+            String novoEndereco = input.nextLine();
+            clienteEncontrado.setEndereco(novoEndereco);
+
+            System.out.println("Cliente alterado com sucesso!");
+        } else {
+            System.out.println("Cliente não encontrado!");
+        }
     }
 
     private static void deletarCliente() {
+        System.out.println("Digite o ID do cliente que deseja deletar: ");
+        int ID = input.nextInt();
 
+        Cliente clienteEncontrado = null;
+
+        for (Cliente novoCliente : clienteLista) {
+            if (novoCliente.getId() == ID) {
+                clienteEncontrado = novoCliente;
+                System.out.println("Cliente encontrado!");
+                clienteLista.remove(clienteEncontrado);
+                System.out.println("Cliente excluído com sucesso!");
+            } else {
+                System.out.println("Cliente não encontrado!");
+            }
+        }
     }
 }
