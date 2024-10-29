@@ -103,7 +103,7 @@ public class Main {
                 break;
             }
 
-            if (flagEncontrado != true) {
+            if (!flagEncontrado) {      //! se falso
                 System.out.println("\nCliente não encontrado!\n");
             }
         }
