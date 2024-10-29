@@ -30,7 +30,7 @@ public class Main {
                     System.out.println("Encerrando...");
                     break;
                 default:
-                    System.out.println("Opcao invalida");
+                    System.out.println("Opcao inválida");
             }
         } while (opcao != 5);
     }
@@ -76,7 +76,9 @@ public class Main {
                 break;
             case 3:
                 System.out.println("Retornando ao menu...");
-                menu();
+                break;
+            default:
+                System.out.println("Opção inválida");
         }
         } while (op != 3);
     }
@@ -110,6 +112,7 @@ public class Main {
     private static void atualizarCliente() {
         System.out.println("Digite o ID do cliente que deseja alterar: ");
         int ID = input.nextInt();
+        input.nextLine();
 
         Cliente clienteEncontrado = null;
 
@@ -117,8 +120,7 @@ public class Main {
             if (novoCliente.getId() == ID) {
                 clienteEncontrado = novoCliente;
                 System.out.println("Cliente encontrado!");
-            } else {
-                System.out.println("Cliente não encontrado!");
+                break;
             }
         }
 
@@ -126,9 +128,11 @@ public class Main {
             System.out.println("Digite o novo nome: ");
             String novoNome = input.nextLine();
             clienteEncontrado.setNome(novoNome);
+
             System.out.println("Digite o novo CPF: ");
             String novoCPF = input.nextLine();
             clienteEncontrado.setCpf(novoCPF);
+
             System.out.println("Digite o novo endereco: ");
             String novoEndereco = input.nextLine();
             clienteEncontrado.setEndereco(novoEndereco);
@@ -149,11 +153,15 @@ public class Main {
             if (novoCliente.getId() == ID) {
                 clienteEncontrado = novoCliente;
                 System.out.println("Cliente encontrado!");
-                clienteLista.remove(clienteEncontrado);
-                System.out.println("Cliente excluído com sucesso!");
-            } else {
-                System.out.println("Cliente não encontrado!");
+                break;
             }
+        }
+
+        if (clienteEncontrado != null) {
+            clienteLista.remove(clienteEncontrado);
+            System.out.println("Cliente excluído com sucesso!");
+        } else {
+            System.out.println("Cliente não encontrado!");
         }
     }
 }
