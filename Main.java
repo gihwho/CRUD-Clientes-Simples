@@ -102,10 +102,10 @@ public class Main {
                 flagEncontrado = true;
                 break;
             }
+        }
 
-            if (!flagEncontrado) {      //! se falso
-                System.out.println("\nCliente não encontrado!\n");
-            }
+        if (!flagEncontrado) {      //! se falso
+            System.out.println("\nCliente não encontrado!\n");
         }
     }
 
